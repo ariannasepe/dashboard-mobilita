@@ -19,12 +19,12 @@ with st.sidebar:
     st.markdown("## Analisi dei flussi di mobilità territoriale e attrattività culturale in Italia")
     st.markdown("---")
     st.markdown('<span class="nav-title">Sezioni</span>', unsafe_allow_html=True)
-    st.page_link("app.py",                        label="  Home")
-    st.page_link("pages/1_panoramica.py",       label="  Panoramica nazionale")
-    st.page_link("pages/2_territoriale.py",     label="  Analisi territoriale")
-    st.page_link("pages/3_cultura_mobilita.py", label="  Cultura & Mobilità")
-    st.page_link("pages/4_scheda_comune.py",    label="  Scheda comune")
-    st.page_link("pages/5_mappa.py", label="  Mappa interattiva")
+    st.page_link("app.py",                        label="Home")
+    st.page_link("pages/1_panoramica.py",         label="Panoramica nazionale")
+    st.page_link("pages/2_territoriale.py",       label="Analisi territoriale")
+    st.page_link("pages/3_cultura_mobilita.py",   label="Cultura & Mobilità")
+    st.page_link("pages/4_scheda_comune.py",      label="Scheda comune")
+    st.page_link("pages/5_mappa.py",              label="Mappa interattiva")
 
 # ── HERO ──────────────────────────────────────────────────────────────────────
 logo_src = get_logo_b64()
