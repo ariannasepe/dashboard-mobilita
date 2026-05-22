@@ -417,6 +417,7 @@ def render_header(title: str, subtitle: str = "", detail: str = ""):
 def carica_dati():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(base_dir, "comuni_kpi_finale_reti.csv")
+    st.write(f"Cerco CSV in: {csv_path}")  # debug temporaneo
     df = pd.read_csv(csv_path, dtype={"Procom": str})
     
     df["nome_regione"] = df["COD_REG"].map(REGIONI)
