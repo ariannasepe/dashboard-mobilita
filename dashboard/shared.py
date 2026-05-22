@@ -415,10 +415,10 @@ def render_header(title: str, subtitle: str = "", detail: str = ""):
 
 @st.cache_data
 def carica_dati():
-    df = pd.read_csv(
-        "comuni_kpi_finale_reti.csv",
-        dtype={"Procom": str}
-    )
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_dir, "comuni_kpi_finale_reti.csv")
+    df = pd.read_csv(csv_path, dtype={"Procom": str})
+    
     df["nome_regione"] = df["COD_REG"].map(REGIONI)
     df["ripartizione"] = df["COD_REG"].map(RIPARTIZIONI)
     df["COMUNE"]       = df["COMUNE"].fillna("N/D")
