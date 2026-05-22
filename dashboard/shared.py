@@ -417,8 +417,16 @@ def render_header(title: str, subtitle: str = "", detail: str = ""):
 def carica_dati():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     csv_path = os.path.join(base_dir, "comuni_kpi_finale_reti.csv")
-    st.write(f"Cerco CSV in: {csv_path}")  # debug temporaneo
     df = pd.read_csv(csv_path, dtype={"Procom": str})
+    df["nome_regione"] = df["COD_REG"].map(REGIONI)
+    df["ripartizione"] = df["COD_REG"].map(RIPARTIZIONI)
+    df["COMUNE"]       = df["COMUNE"].fillna("N/D")
+    for col in ["n_archi_anas","km_rete_anas","ha_rete_anas",
+                "n_postazioni_tgm","tgm_medio","tgm_max","ha_tgm",
+                "n_stazioni_totali","n_stazioni","n_fermate","ha_stazione"]:
+        if col not in df.columns:
+            df[col] = 0
+    return df
     
 def render_sidebar():
     with st.sidebar:
