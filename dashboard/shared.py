@@ -415,7 +415,6 @@ def render_header(title: str, subtitle: str = "", detail: str = ""):
 
 @st.cache_data
 def carica_dati():
-    # Prova più percorsi possibili
     possible_paths = [
         os.path.join(os.path.dirname(os.path.abspath(__file__)), "comuni_kpi_finale_reti.csv"),
         os.path.join(os.getcwd(), "comuni_kpi_finale_reti.csv"),
@@ -425,21 +424,10 @@ def carica_dati():
     for p in possible_paths:
         if os.path.exists(p):
             csv_path = p
+            st.write(f"✅ CSV trovato in: {csv_path}")  # debug temporaneo
             break
-    if csv_path is None:
-        raise FileNotFoundError(f"CSV non trovato. CWD: {os.getcwd()}, __file__: {__file__}")
     df = pd.read_csv(csv_path, dtype={"Procom": str})
     
-    df["nome_regione"] = df["COD_REG"].map(REGIONI)
-    df["ripartizione"] = df["COD_REG"].map(RIPARTIZIONI)
-    df["COMUNE"]       = df["COMUNE"].fillna("N/D")
-    for col in ["n_archi_anas","km_rete_anas","ha_rete_anas",
-                "n_postazioni_tgm","tgm_medio","tgm_max","ha_tgm",
-                "n_stazioni_totali","n_stazioni","n_fermate","ha_stazione"]:
-        if col not in df.columns:
-            df[col] = 0
-    return df
-
 def render_sidebar():
     with st.sidebar:
         logo_src = get_logo_b64()
