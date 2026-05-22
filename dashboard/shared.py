@@ -415,18 +415,10 @@ def render_header(title: str, subtitle: str = "", detail: str = ""):
 
 @st.cache_data
 def carica_dati():
-    possible_paths = [
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "comuni_kpi_finale_reti.csv"),
-        os.path.join(os.getcwd(), "comuni_kpi_finale_reti.csv"),
-        os.path.join(os.getcwd(), "dashboard", "comuni_kpi_finale_reti.csv"),
-    ]
-    csv_path = None
-    for p in possible_paths:
-        if os.path.exists(p):
-            csv_path = p
-            st.write(f"✅ CSV trovato in: {csv_path}")  # debug temporaneo
-            break
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_dir, "comuni_kpi_finale_reti.csv")
     df = pd.read_csv(csv_path, dtype={"Procom": str})
+    
     
 def render_sidebar():
     with st.sidebar:
