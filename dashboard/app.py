@@ -118,9 +118,6 @@ for col, title, color, desc, page in pages:
 with st.expander("Nota metodologica"):
     st.markdown("""
     ### Classificazione dei comuni
-    Ogni comune è classificato sulla base di due indicatori calcolati dalla matrice di pendolarismo ISTAT 2021:
-    - **Saldo netto**: differenza tra flussi in entrata e in uscita
-    - **Indice di attrattività**: rapporto tra entrate e popolazione residente (POP21)
     
     Un comune è classificato come:
     - **Attrattore** → saldo netto positivo 
