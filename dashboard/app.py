@@ -149,12 +149,3 @@ with st.expander("Nota metodologica"):
     La dashboard è realizzata con **Streamlit** e i grafici con **Plotly**.
     """)
         
-
-st.markdown("""
-<div class="divider"></div>
-<div style="font-size:0.72rem; color:#34465A; text-align:center; line-height:2;">
-    Fonti · Matrice pendolarismo ISTAT 2021 · Confini amministrativi ISTAT 2021 · 
-    OpenStreetMap via Overpass API · Rete ANAS 2015 · TGM ANAS 2015<br>
-    Elaborazione Python · geopandas · networkx · plotly · streamlit
-</div>
-""", unsafe_allow_html=True)
