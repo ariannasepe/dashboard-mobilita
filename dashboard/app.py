@@ -137,7 +137,8 @@ with st.expander("Nota metodologica"):
     |---|---|---|
     | Matrice pendolarismo ISTAT | Flussi origine-destinazione per lavoro e studio | 2021 |
     | Confini amministrativi ISTAT | Geometrie comunali, provinciali e regionali | 2021 |
-    | OpenStreetMap / Overpass API | Poli culturali sul territorio nazionale | 2023 |
+    | OpenStreetMap / Overpass API | Poli culturali sul territorio nazionale | 2026 |
+    | OpenStreetMap / Overpass API | Caselli Autostradali sul territorio nazionale | 2026 |
     | Rete ANAS | Archi stradali e km di rete stradale statale | 2015 |
     | TGM ANAS | Traffico Giornaliero Medio per postazione | 2015 |
 
