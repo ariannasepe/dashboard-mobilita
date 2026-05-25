@@ -123,9 +123,9 @@ with st.expander("Nota metodologica"):
     - **Indice di attrattività**: rapporto tra entrate e popolazione residente (POP21)
     
     Un comune è classificato come:
-    - **Attrattore** → saldo netto positivo e indice di attrattività superiore alla mediana nazionale
+    - **Attrattore** → saldo netto positivo 
     - **Emettitore** → saldo netto negativo
-    - **Equilibrato** → tutti gli altri casi
+    - **Equilibrato** → saldo netto pari a zero
 
     ### I 4 KPI territoriali
     - **Saldo netto mobilità per territorio**: differenza tra flussi in entrata e in uscita per ciascun comune, misura del peso attrattivo o emissivo del territorio.
