@@ -95,7 +95,7 @@ components.html("""
 </head>
 <body>
 
-<button class="metodo-btn" onclick="toggle()">📋 Metodologia</button>
+<button class="metodo-btn" onclick="toggle()">Nota metodologica</button>
 
 <div class="metodo-panel" id="panel">
     <h4>Classificazione dei comuni</h4>
@@ -147,7 +147,7 @@ function toggle() {
 
 </body>
 </html>
-""", height=0)
+""", height=1)
 
 # ── SIDEBAR ───────────────────────────────────────────────────────────────────
 with st.sidebar:
