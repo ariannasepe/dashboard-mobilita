@@ -14,6 +14,8 @@ st.markdown(SHARED_CSS, unsafe_allow_html=True)
 # ── NOTA METODOLOGICA FLOATING ───────────────────────────────────────────────
 st.markdown("""
 <style>
+#metodo-toggle { display: none; }
+
 .metodo-btn {
     position: fixed;
     top: 60px;
@@ -29,6 +31,8 @@ st.markdown("""
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     font-family: 'Plus Jakarta Sans', sans-serif;
+    text-decoration: none;
+    display: block;
 }
 .metodo-btn:hover { background: #1a6a9a; }
 
@@ -52,7 +56,9 @@ st.markdown("""
     color: #1a3a4f;
     line-height: 1.7;
 }
-.metodo-panel.open { display: block; }
+#metodo-toggle:checked ~ .metodo-panel { display: block; }
+#metodo-toggle:checked ~ .metodo-btn { background: #1a6a9a; }
+
 .metodo-panel h4 {
     font-size: 0.65rem;
     font-weight: 700;
@@ -86,13 +92,10 @@ st.markdown("""
 .metodo-panel tr:nth-child(even) td { background: #f4faff; }
 </style>
 
-<button class="metodo-btn" onclick="
-    var p = document.getElementById('metodoPanel');
-    p.classList.toggle('open');
-    this.textContent = p.classList.contains('open') ? '✕ Chiudi' : '📋 Metodologia';
-">📋 Metodologia</button>
+<input type="checkbox" id="metodo-toggle">
+<label class="metodo-btn" for="metodo-toggle">Nota metodologica</label>
 
-<div class="metodo-panel" id="metodoPanel">
+<div class="metodo-panel">
     <h4>Classificazione dei comuni</h4>
     Un comune è classificato come:
     <ul>
