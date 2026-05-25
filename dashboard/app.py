@@ -2,6 +2,7 @@ import streamlit as st
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from shared import SHARED_CSS, get_logo_b64, get_logo_tag
+import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="Analisi dei flussi di mobilità territoriale e attrattività culturale in Italia · Italia",
@@ -12,9 +13,14 @@ st.set_page_config(
 st.markdown(SHARED_CSS, unsafe_allow_html=True)
 
 # ── NOTA METODOLOGICA FLOATING ───────────────────────────────────────────────
-st.markdown("""
+components.html("""
+<!DOCTYPE html>
+<html>
+<head>
 <style>
-#metodo-toggle { display: none; }
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 .metodo-btn {
     position: fixed;
@@ -22,7 +28,7 @@ st.markdown("""
     right: 20px;
     z-index: 9999;
     background: #25465D;
-    color: white !important;
+    color: white;
     border: none;
     border-radius: 8px;
     padding: 0.45rem 1rem;
@@ -31,8 +37,6 @@ st.markdown("""
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     font-family: 'Plus Jakarta Sans', sans-serif;
-    text-decoration: none;
-    display: block;
 }
 .metodo-btn:hover { background: #1a6a9a; }
 
@@ -56,9 +60,6 @@ st.markdown("""
     color: #1a3a4f;
     line-height: 1.7;
 }
-#metodo-toggle:checked ~ .metodo-panel { display: block; }
-#metodo-toggle:checked ~ .metodo-btn { background: #1a6a9a; }
-
 .metodo-panel h4 {
     font-size: 0.65rem;
     font-weight: 700;
@@ -91,11 +92,12 @@ st.markdown("""
 }
 .metodo-panel tr:nth-child(even) td { background: #f4faff; }
 </style>
+</head>
+<body>
 
-<input type="checkbox" id="metodo-toggle">
-<label class="metodo-btn" for="metodo-toggle">Nota metodologica</label>
+<button class="metodo-btn" onclick="toggle()">📋 Metodologia</button>
 
-<div class="metodo-panel">
+<div class="metodo-panel" id="panel">
     <h4>Classificazione dei comuni</h4>
     Un comune è classificato come:
     <ul>
@@ -128,7 +130,24 @@ st.markdown("""
     I dati sono stati elaborati in Python con le librerie <b>pandas</b>, <b>geopandas</b> e <b>networkx</b>.
     La dashboard è realizzata con <b>Streamlit</b> e i grafici con <b>Plotly</b>.
 </div>
-""", unsafe_allow_html=True)
+
+<script>
+function toggle() {
+    var p = document.getElementById('panel');
+    var btn = document.querySelector('.metodo-btn');
+    if (p.style.display === 'none' || p.style.display === '') {
+        p.style.display = 'block';
+        btn.textContent = '✕ Chiudi';
+    } else {
+        p.style.display = 'none';
+        btn.textContent = '📋 Metodologia';
+    }
+}
+</script>
+
+</body>
+</html>
+""", height=0)
 
 # ── SIDEBAR ───────────────────────────────────────────────────────────────────
 with st.sidebar:
