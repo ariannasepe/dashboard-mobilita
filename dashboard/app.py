@@ -2,7 +2,6 @@ import streamlit as st
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from shared import SHARED_CSS, get_logo_b64, get_logo_tag
-import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="Analisi dei flussi di mobilità territoriale e attrattività culturale in Italia · Italia",
@@ -12,142 +11,6 @@ st.set_page_config(
 
 st.markdown(SHARED_CSS, unsafe_allow_html=True)
 
-# ── NOTA METODOLOGICA FLOATING ───────────────────────────────────────────────
-components.html("""
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-.metodo-btn {
-    position: fixed;
-    top: 60px;
-    right: 20px;
-    z-index: 9999;
-    background: #25465D;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 0.45rem 1rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-.metodo-btn:hover { background: #1a6a9a; }
-
-.metodo-panel {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    z-index: 9998;
-    width: 420px;
-    max-height: 75vh;
-    overflow-y: auto;
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 8px 32px rgba(37,70,93,0.22);
-    border: 1px solid #b3dff5;
-    border-top: 4px solid #25465D;
-    padding: 1.4rem 1.6rem;
-    display: none;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.84rem;
-    color: #1a3a4f;
-    line-height: 1.7;
-}
-.metodo-panel h4 {
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #4FC3F7;
-    margin: 1rem 0 0.3rem 0;
-}
-.metodo-panel h4:first-child { margin-top: 0; }
-.metodo-panel ul { padding-left: 1.2rem; margin: 0.3rem 0; }
-.metodo-panel li { margin-bottom: 0.3rem; }
-.metodo-panel b { color: #25465D; }
-.metodo-panel table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.78rem;
-    margin-top: 0.4rem;
-}
-.metodo-panel th {
-    background: #25465D;
-    color: white;
-    padding: 5px 8px;
-    text-align: left;
-    font-weight: 600;
-}
-.metodo-panel td {
-    padding: 5px 8px;
-    border-bottom: 1px solid #b3dff5;
-    vertical-align: top;
-}
-.metodo-panel tr:nth-child(even) td { background: #f4faff; }
-</style>
-</head>
-<body>
-
-<button class="metodo-btn" onclick="toggle()">Nota metodologica</button>
-
-<div class="metodo-panel" id="panel">
-    <h4>Classificazione dei comuni</h4>
-    Un comune è classificato come:
-    <ul>
-        <li><b>Attrattore</b> → saldo netto positivo</li>
-        <li><b>Emettitore</b> → saldo netto negativo</li>
-        <li><b>Equilibrato</b> → saldo netto pari a zero</li>
-    </ul>
-
-    <h4>I 4 KPI territoriali</h4>
-    <ul>
-        <li><b>Saldo netto mobilità per territorio</b>: differenza tra flussi in entrata e in uscita per ciascun comune, misura del peso attrattivo o emissivo del territorio.</li>
-        <li><b>Indice di attrattività</b>: rapporto tra entrate e popolazione residente, normalizza il saldo rispetto alla dimensione demografica del comune.</li>
-        <li><b>Intensità dei flussi verso territori culturali</b>: quota di flussi in uscita diretti verso comuni con almeno 5 poli culturali.</li>
-        <li><b>Numero di poli culturali in territori ad alta centralità</b>: conteggio dei poli culturali (musei, teatri, biblioteche, siti archeologici, monumenti, gallerie) nei comuni attrattori.</li>
-    </ul>
-
-    <h4>Fonti dati</h4>
-    <table>
-        <tr><th>Fonte</th><th>Descrizione</th><th>Anno</th></tr>
-        <tr><td>Matrice pendolarismo ISTAT</td><td>Flussi origine-destinazione per lavoro e studio</td><td>2021</td></tr>
-        <tr><td>Confini amministrativi ISTAT</td><td>Geometrie comunali, provinciali e regionali</td><td>2021</td></tr>
-        <tr><td>OpenStreetMap / Overpass API</td><td>Poli culturali sul territorio nazionale</td><td>2026</td></tr>
-        <tr><td>OpenStreetMap / Overpass API</td><td>Stazioni ferroviarie sul territorio nazionale</td><td>2026</td></tr>
-        <tr><td>OpenStreetMap / Overpass API</td><td>Caselli autostradali sul territorio nazionale</td><td>2026</td></tr>
-        <tr><td>Rete ANAS</td><td>Archi stradali e km di rete stradale statale</td><td>2015</td></tr>
-        <tr><td>TGM ANAS</td><td>Traffico Giornaliero Medio per postazione</td><td>2015</td></tr>
-    </table>
-
-    <h4>Elaborazione</h4>
-    I dati sono stati elaborati in Python con le librerie <b>pandas</b>, <b>geopandas</b> e <b>networkx</b>.
-    La dashboard è realizzata con <b>Streamlit</b> e i grafici con <b>Plotly</b>.
-</div>
-
-<script>
-function toggle() {
-    var p = document.getElementById('panel');
-    var btn = document.querySelector('.metodo-btn');
-    if (p.style.display === 'none' || p.style.display === '') {
-        p.style.display = 'block';
-        btn.textContent = '✕ Chiudi';
-    } else {
-        p.style.display = 'none';
-        btn.textContent = '📋 Metodologia';
-    }
-}
-</script>
-
-</body>
-</html>
-""", height=1)
 
 # ── SIDEBAR ───────────────────────────────────────────────────────────────────
 with st.sidebar:
@@ -252,6 +115,47 @@ for col, title, color, desc, page in pages:
         </div>
         """, unsafe_allow_html=True)
         st.page_link(page, label="Vai alla sezione", use_container_width=True)
+
+st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
+col1, col2 = st.columns([5, 1])
+with col2:
+    with st.expander("Nota Metodologica"):
+        st.markdown("""
+        **Classificazione dei comuni**
+        
+        Un comune è classificato come:
+        - **Attrattore** → saldo netto positivo
+        - **Emettitore** → saldo netto negativo
+        - **Equilibrato** → saldo netto pari a zero
+
+        **I 4 KPI territoriali**
+        - **Saldo netto mobilità per territorio**: differenza tra flussi in entrata e in uscita.
+        - **Indice di attrattività**: rapporto tra entrate e popolazione residente.
+        - **Intensità dei flussi verso territori culturali**: quota di flussi verso comuni con almeno 5 poli culturali.
+        - **Numero di poli culturali in territori ad alta centralità**: conteggio nei comuni attrattori.
+
+        **Fonti dati**
+        | Fonte | Descrizione | Anno |
+        |---|---|---|
+        | Matrice pendolarismo ISTAT | Flussi origine-destinazione | 2021 |
+        | Confini amministrativi ISTAT | Geometrie comunali e regionali | 2021 |
+        | OpenStreetMap / Overpass API | Poli culturali | 2026 |
+        | OpenStreetMap / Overpass API | Stazioni ferroviarie | 2026 |
+        | OpenStreetMap / Overpass API | Caselli autostradali | 2026 |
+        | Rete ANAS | Archi stradali | 2015 |
+        | TGM ANAS | Traffico Giornaliero Medio | 2015 |
+
+        **Elaborazione**: Python · pandas · geopandas · networkx · Streamlit · Plotly
+        """)
+
+st.markdown("""
+<div style="font-size:0.72rem; color:#34465A; text-align:center; line-height:2;">
+    Fonti · Matrice pendolarismo ISTAT 2021 · Confini amministrativi ISTAT 2021 · 
+    OpenStreetMap via Overpass API · Rete ANAS 2015 · TGM ANAS 2015<br>
+    Elaborazione Python · geopandas · networkx · plotly · streamlit
+</div>
+""", unsafe_allow_html=True)
         
 
 st.markdown("""
