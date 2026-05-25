@@ -127,10 +127,11 @@ with st.expander("Nota metodologica"):
     - **Emettitore** → saldo netto negativo
     - **Equilibrato** → tutti gli altri casi
 
-    ### Intensità culturale
-    Quota di flussi in uscita da un comune diretti verso destinazioni con almeno **5 poli culturali**.
-    I poli culturali includono: musei, teatri, biblioteche, siti archeologici, monumenti e gallerie,
-    estratti da OpenStreetMap tramite Overpass API.
+    ### I 4 KPI territoriali
+    - **Saldo netto mobilità per territorio**: differenza tra flussi in entrata e in uscita per ciascun comune, misura del peso attrattivo o emissivo del territorio.
+    - **Indice di attrattività**: rapporto tra entrate e popolazione residente, normalizza il saldo rispetto alla dimensione demografica del comune.
+    - **Intensità dei flussi verso territori culturali**: quota di flussi in uscita diretti verso comuni con almeno 5 poli culturali, misura quanto un territorio è orientato culturalmente nei suoi spostamenti.
+    - **Numero di poli culturali in territori ad alta centralità**: conteggio dei poli culturali (musei, teatri, biblioteche, siti archeologici, monumenti, gallerie) presenti nei comuni classificati come attrattori.
 
     ### Fonti dati
     | Fonte | Descrizione | Anno |
@@ -138,7 +139,8 @@ with st.expander("Nota metodologica"):
     | Matrice pendolarismo ISTAT | Flussi origine-destinazione per lavoro e studio | 2021 |
     | Confini amministrativi ISTAT | Geometrie comunali, provinciali e regionali | 2021 |
     | OpenStreetMap / Overpass API | Poli culturali sul territorio nazionale | 2026 |
-    | OpenStreetMap / Overpass API | Caselli Autostradali sul territorio nazionale | 2026 |
+    | OpenStreetMap / Overpass API | Stazioni ferroviarie sul territorio nazionale | 2026 |
+    | OpenStreetMap / Overpass API | Caselli autostradali sul territorio nazionale | 2026 |
     | Rete ANAS | Archi stradali e km di rete stradale statale | 2015 |
     | TGM ANAS | Traffico Giornaliero Medio per postazione | 2015 |
 
