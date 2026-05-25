@@ -115,6 +115,37 @@ for col, title, color, desc, page in pages:
         """, unsafe_allow_html=True)
         st.page_link(page, label="Vai alla sezione", use_container_width=True)
 
+with st.expander("📋 Nota metodologica"):
+    st.markdown("""
+    ### Classificazione dei comuni
+    Ogni comune è classificato sulla base di due indicatori calcolati dalla matrice di pendolarismo ISTAT 2021:
+    - **Saldo netto**: differenza tra flussi in entrata e in uscita
+    - **Indice di attrattività**: rapporto tra entrate e popolazione residente (POP21)
+    
+    Un comune è classificato come:
+    - **Attrattore** → saldo netto positivo e indice di attrattività superiore alla mediana nazionale
+    - **Emettitore** → saldo netto negativo
+    - **Equilibrato** → tutti gli altri casi
+
+    ### Intensità culturale
+    Quota di flussi in uscita da un comune diretti verso destinazioni con almeno **5 poli culturali**.
+    I poli culturali includono: musei, teatri, biblioteche, siti archeologici, monumenti e gallerie,
+    estratti da OpenStreetMap tramite Overpass API.
+
+    ### Fonti dati
+    | Fonte | Descrizione | Anno |
+    |---|---|---|
+    | Matrice pendolarismo ISTAT | Flussi origine-destinazione per lavoro e studio | 2021 |
+    | Confini amministrativi ISTAT | Geometrie comunali, provinciali e regionali | 2021 |
+    | OpenStreetMap / Overpass API | Poli culturali sul territorio nazionale | 2023 |
+    | Rete ANAS | Archi stradali e km di rete stradale statale | 2015 |
+    | TGM ANAS | Traffico Giornaliero Medio per postazione | 2015 |
+
+    ### Elaborazione
+    I dati sono stati elaborati in Python con le librerie **pandas**, **geopandas** e **networkx**.
+    La dashboard è realizzata con **Streamlit** e i grafici con **Plotly**.
+    """)
+
 st.markdown("""
 <div class="divider"></div>
 <div style="font-size:0.72rem; color:#34465A; text-align:center; line-height:2;">
