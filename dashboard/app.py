@@ -115,7 +115,7 @@ for col, title, color, desc, page in pages:
         """, unsafe_allow_html=True)
         st.page_link(page, label="Vai alla sezione", use_container_width=True)
 
-with st.expander("📋 Nota metodologica"):
+with st.expander("Nota metodologica"):
     st.markdown("""
     ### Classificazione dei comuni
     Ogni comune è classificato sulla base di due indicatori calcolati dalla matrice di pendolarismo ISTAT 2021:
