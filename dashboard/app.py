@@ -118,44 +118,36 @@ for col, title, color, desc, page in pages:
 
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-col1, col2 = st.columns([5, 1])
-with col2:
-    with st.expander("Nota Metodologica"):
-        st.markdown("""
-        **Classificazione dei comuni**
-        
-        Un comune è classificato come:
-        - **Attrattore** → saldo netto positivo
-        - **Emettitore** → saldo netto negativo
-        - **Equilibrato** → saldo netto pari a zero
+with st.expander("Nota metodologica"):
+    st.markdown("""
+    ### Classificazione dei comuni
+    
+    Un comune è classificato come:
+    - **Attrattore** → saldo netto positivo 
+    - **Emettitore** → saldo netto negativo
+    - **Equilibrato** → saldo netto pari a zero
 
-        **I 4 KPI territoriali**
-        - **Saldo netto mobilità per territorio**: differenza tra flussi in entrata e in uscita.
-        - **Indice di attrattività**: rapporto tra entrate e popolazione residente.
-        - **Intensità dei flussi verso territori culturali**: quota di flussi verso comuni con almeno 5 poli culturali.
-        - **Numero di poli culturali in territori ad alta centralità**: conteggio nei comuni attrattori.
+    ### I 4 KPI territoriali
+    - **Saldo netto mobilità per territorio**: differenza tra flussi in entrata e in uscita per ciascun comune, misura del peso attrattivo o emissivo del territorio.
+    - **Indice di attrattività**: rapporto tra entrate e popolazione residente, normalizza il saldo rispetto alla dimensione demografica del comune.
+    - **Intensità dei flussi verso territori culturali**: quota di flussi in uscita diretti verso comuni con almeno 5 poli culturali, misura quanto un territorio è orientato culturalmente nei suoi spostamenti.
+    - **Numero di poli culturali in territori ad alta centralità**: conteggio dei poli culturali (musei, teatri, biblioteche, siti archeologici, monumenti, gallerie) presenti nei comuni classificati come attrattori.
 
-        **Fonti dati**
-        | Fonte | Descrizione | Anno |
-        |---|---|---|
-        | Matrice pendolarismo ISTAT | Flussi origine-destinazione | 2021 |
-        | Confini amministrativi ISTAT | Geometrie comunali e regionali | 2021 |
-        | OpenStreetMap / Overpass API | Poli culturali | 2026 |
-        | OpenStreetMap / Overpass API | Stazioni ferroviarie | 2026 |
-        | OpenStreetMap / Overpass API | Caselli autostradali | 2026 |
-        | Rete ANAS | Archi stradali | 2015 |
-        | TGM ANAS | Traffico Giornaliero Medio | 2015 |
+    ### Fonti dati
+    | Fonte | Descrizione | Anno |
+    |---|---|---|
+    | Matrice pendolarismo ISTAT | Flussi origine-destinazione per lavoro e studio | 2021 |
+    | Confini amministrativi ISTAT | Geometrie comunali, provinciali e regionali | 2021 |
+    | OpenStreetMap / Overpass API | Poli culturali sul territorio nazionale | 2026 |
+    | OpenStreetMap / Overpass API | Caselli autostradali sul territorio nazionale | 2026 |
+    | OpenStreetMap / Overpass API | Stazioni ferroviarie sul territorio nazionale | 2026 |
+    | Rete ANAS | Archi stradali e km di rete stradale statale | 2015 |
+    | TGM ANAS | Traffico Giornaliero Medio per postazione | 2015 |
 
-        **Elaborazione**: Python · pandas · geopandas · networkx · Streamlit · Plotly
-        """)
-
-st.markdown("""
-<div style="font-size:0.72rem; color:#34465A; text-align:center; line-height:2;">
-    Fonti · Matrice pendolarismo ISTAT 2021 · Confini amministrativi ISTAT 2021 · 
-    OpenStreetMap via Overpass API · Rete ANAS 2015 · TGM ANAS 2015<br>
-    Elaborazione Python · geopandas · networkx · plotly · streamlit
-</div>
-""", unsafe_allow_html=True)
+    ### Elaborazione
+    I dati sono stati elaborati in Python con le librerie **pandas**, **geopandas** e **networkx**.
+    La dashboard è realizzata con **Streamlit** e i grafici con **Plotly**.
+    """)
         
 
 st.markdown("""
