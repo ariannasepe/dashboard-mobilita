@@ -106,27 +106,49 @@ with c1:
 
 with c2:
     st.markdown('<div class="section-label">DISTRIBUZIONE SALDO NETTO</div>', unsafe_allow_html=True)
+    
+    import numpy as np
+    
+    # Trasformazione log simmetrica: sign(x) * log10(|x| + 1)
+    dff_hist = dff.copy()
+    dff_hist["saldo_netto_log"] = np.sign(dff_hist["saldo_netto"]) * np.log10(np.abs(dff_hist["saldo_netto"]) + 1)
+    
     fig_hist = px.histogram(
-        dff, x="saldo_netto", color="classificazione",
+        dff_hist, x="saldo_netto_log", color="classificazione",
         color_discrete_map=COLORI, nbins=80,
-        labels={"count": "N. comuni"},
+        labels={"saldo_netto_log": "Saldo netto (log simmetrico)", "count": "N. comuni"},
         height=260
     )
     layout2 = copy.deepcopy(PLOTLY_LAYOUT)
     layout2.update(showlegend=False, bargap=0.05, margin=dict(t=10, b=40, l=40, r=10))
     fig_hist.update_layout(**layout2)
-    # linea a zero
+    
+    # Linea a zero (pareggio)
     fig_hist.add_vline(x=0, line_dash="dash", line_color="#051186", line_width=1.5,
                        annotation_text="pareggio", annotation_position="top right",
                        annotation_font=dict(size=9, color="#051186"))
-    # linea media
-    media_saldo = dff["saldo_netto"].mean()
-    fig_hist.add_vline(x=media_saldo, line_dash="dot", line_color="#00880D", line_width=1.2,
-                       annotation_text=f"media {media_saldo:+.0f}",
+    
+    # Linea media (trasformata)
+    media_saldo_log = dff_hist["saldo_netto_log"].mean()
+    media_saldo_raw = dff["saldo_netto"].mean()
+    fig_hist.add_vline(x=media_saldo_log, line_dash="dot", line_color="#00880D", line_width=1.2,
+                       annotation_text=f"media {media_saldo_raw:+.0f}",
                        annotation_position="top left",
                        annotation_font=dict(size=9, color="#00880D"))
+    
+    # Tick personalizzati: mostra valori reali sull'asse X
+    tick_vals_raw = [-100000, -10000, -1000, -100, 0, 100, 1000, 10000, 100000]
+    tick_vals_log = [np.sign(v) * np.log10(abs(v) + 1) for v in tick_vals_raw]
+    tick_labels   = ["-100k", "-10k", "-1k", "-100", "0", "100", "1k", "10k", "100k"]
+    
+    fig_hist.update_xaxes(
+        tickvals=tick_vals_log,
+        ticktext=tick_labels,
+        title_text="Saldo netto"
+    )
+    
     st.plotly_chart(fig_hist, use_container_width=True)
-
+    
 with c3:
     st.markdown('<div class="section-label">ATTRATTIVITÀ VS POPOLAZIONE</div>', unsafe_allow_html=True)
     df_sc = dff[dff["POP21"] > 500].copy()
