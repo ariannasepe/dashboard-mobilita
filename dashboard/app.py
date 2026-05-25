@@ -130,7 +130,7 @@ with st.expander("Nota metodologica"):
     ### I 4 KPI territoriali
     - **Saldo netto mobilità per territorio**: differenza tra flussi in entrata e in uscita per ciascun comune, misura del peso attrattivo o emissivo del territorio.
     - **Indice di attrattività**: rapporto tra entrate e popolazione residente, normalizza il saldo rispetto alla dimensione demografica del comune.
-    - **Intensità dei flussi verso territori culturali**: quota di flussi in uscita diretti verso comuni con almeno 5 poli culturali, misura quanto un territorio è orientato culturalmente nei suoi spostamenti.
+    - **Intensità dei flussi verso territori culturali**: quota di flussi in uscita diretti verso comuni con almeno 1 polo culturale, misura quanto un territorio è orientato culturalmente nei suoi spostamenti.
     - **Numero di poli culturali in territori ad alta centralità**: conteggio dei poli culturali (musei, teatri, biblioteche, siti archeologici, monumenti, gallerie) presenti nei comuni classificati come attrattori.
 
     ### Fonti dati
