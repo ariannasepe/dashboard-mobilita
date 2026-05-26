@@ -148,6 +148,17 @@ with c2:
     )
     
     st.plotly_chart(fig_hist, use_container_width=True)
+
+    st.markdown(
+        """
+        <div style="font-size:0.78rem; color:#1a3a4f; margin-top:-10px;">
+            <span style="color:#051186; font-weight:600;">■ Blu</span> = comuni attrattori &nbsp;|&nbsp;
+            <span style="color:#00880D; font-weight:600;">■ Verde</span> = comuni emettitori &nbsp;|&nbsp;
+            <span style="color:#C1C1C1; font-weight:600;">■ Grigio</span> = comuni equilibrati
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     
 with c3:
     st.markdown('<div class="section-label">ATTRATTIVITÀ VS POPOLAZIONE</div>', unsafe_allow_html=True)
