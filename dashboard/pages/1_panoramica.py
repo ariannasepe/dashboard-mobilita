@@ -148,7 +148,7 @@ with c2:
     )
 
     fig_hist.add_annotation(
-    x=0.50, y=0.97, xref="paper", yref="paper",
+    x=0.70, y=0.97, xref="paper", yref="paper",
     text="<b style='color:#051186'>■</b> attrattore &nbsp; <b style='color:#00880D'>■</b> emettitore",
     showarrow=False,
     font=dict(size=9, color="#1a3a4f"),
@@ -183,7 +183,7 @@ with c3:
         height=260
     )
     layout3 = copy.deepcopy(PLOTLY_LAYOUT)
-    layout3.update(showlegend=False, margin=dict(t=10, b=40, l=50, r=10))
+    layout3.update(showlegend=False, margin=dict(t=10, b=40, l=50, r=50))
     fig_sc.update_layout(**layout3)
     # linea orizzontale a indice = 1 (pareggio)
     fig_sc.add_hline(y=1, line_dash="dash", line_color="#C1C1C1", line_width=1,
