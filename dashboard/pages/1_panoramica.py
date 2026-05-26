@@ -146,19 +146,19 @@ with c2:
         ticktext=tick_labels,
         title_text="Saldo netto"
     )
+
+    fig_hist.add_annotation(
+    x=0.01, y=0.97, xref="paper", yref="paper",
+    text="<b style='color:#051186'>■</b> attrattore &nbsp; <b style='color:#00880D'>■</b> emettitore",
+    showarrow=False,
+    font=dict(size=9, color="#1a3a4f"),
+    align="left",
+    bgcolor="rgba(255,255,255,0.7)",
+    borderpad=4,
+    xanchor="left", yanchor="top"
+)
     
     st.plotly_chart(fig_hist, use_container_width=True)
-
-    layout2.update(
-    showlegend=True,
-    legend=dict(
-        orientation="h",
-        x=0, y=-0.25,
-        font=dict(size=9, color="#1a3a4f")
-    ),
-    bargap=0.05,
-    margin=dict(t=10, b=60, l=40, r=10)  # b aumentato per fare spazio
-)
     
 with c3:
     st.markdown('<div class="section-label">ATTRATTIVITÀ VS POPOLAZIONE</div>', unsafe_allow_html=True)
