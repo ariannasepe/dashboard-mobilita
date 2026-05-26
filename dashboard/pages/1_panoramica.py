@@ -120,7 +120,7 @@ with c2:
         height=260
     )
     layout2 = copy.deepcopy(PLOTLY_LAYOUT)
-    layout2.update(showlegend=False, bargap=0.05, margin=dict(t=10, b=40, l=40, r=20))
+    layout2.update(showlegend=False, bargap=0.05, margin=dict(t=10, b=40, l=40, r=30))
     fig_hist.update_layout(**layout2)
     
     # Linea a zero (pareggio)
