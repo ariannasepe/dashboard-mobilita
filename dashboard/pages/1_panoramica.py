@@ -148,7 +148,7 @@ with c2:
     )
 
     fig_hist.add_annotation(
-    x=0.01, y=0.15, xref="paper", yref="paper",
+    x=0.15, y=0.97, xref="paper", yref="paper",
     text="<b style='color:#051186'>■</b> attrattore &nbsp; <b style='color:#00880D'>■</b> emettitore",
     showarrow=False,
     font=dict(size=9, color="#1a3a4f"),
