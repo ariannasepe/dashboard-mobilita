@@ -145,7 +145,7 @@ with st.expander("Nota metodologica"):
     | TGM ANAS | Traffico Giornaliero Medio per postazione | 2015 |
 
     ### Elaborazione
-    I dati sono stati elaborati in Python con le librerie **pandas**, **geopandas** e **networkx**.
+    I dati sono stati elaborati in Python.
     La dashboard è realizzata con **Streamlit** e i grafici con **Plotly**.
     """)
         
