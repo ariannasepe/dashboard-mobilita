@@ -293,8 +293,8 @@ st.markdown('<div class="section-title">Top comuni per indicatore</div>', unsafe
 tab1, tab2, tab3, tab4 = st.tabs([
     "Saldo netto assoluto",
     "Indice attrattività",
-    "Intensità culturale",
     "Poli culturali",
+    "Intensità culturale",
 ])
 
 def fmt_table(data: pd.DataFrame, cols: list, rename: list) -> pd.DataFrame:
@@ -336,25 +336,10 @@ with tab2:
     )
 
 with tab3:
-    top3 = (dff[dff["uscite"] >= 200]
-            .sort_values("intensita_culturale", ascending=False).head(20))
-    st.dataframe(
-        fmt_table(top3,
-            ["COMUNE", "nome_regione", "intensita_culturale", "flussi_verso_cultura",
-             "n_destinazioni_culturali", "n_poli_totali", "classificazione"],
-            ["Comune", "Regione", "Intensità culturale", "Flussi verso cultura",
-             "Destinazioni culturali", "Poli culturali", "Classificazione"]),
-        column_config={
-            "Intensità culturale": st.column_config.NumberColumn(format="%.4f"),
-        },
-        use_container_width=True, height=450
-    )
-
-with tab4:
-        top4 = (dff[dff["n_poli_totali"] > 0]
+    top3 = (dff[dff["n_poli_totali"] > 0]
             .sort_values("n_poli_totali", ascending=False).head(20))
     st.dataframe(
-        fmt_table(top4,
+        fmt_table(top3,
             ["COMUNE", "nome_regione", "n_poli_totali", "POP21", "saldo_netto", "indice_attrattivita", "classificazione"],
             ["Comune", "Regione", "Poli culturali", "Popolazione", "Saldo netto", "Ind. attrattività", "Classificazione"]),
         column_config={
@@ -364,7 +349,17 @@ with tab4:
         use_container_width=True, height=450
     )
 
-
-
-    
-
+with tab4:
+    top4 = (dff[dff["uscite"] >= 200]
+            .sort_values("intensita_culturale", ascending=False).head(20))
+    st.dataframe(
+        fmt_table(top4,
+            ["COMUNE", "nome_regione", "intensita_culturale", "flussi_verso_cultura",
+             "n_destinazioni_culturali", "n_poli_totali", "classificazione"],
+            ["Comune", "Regione", "Intensità culturale", "Flussi verso cultura",
+             "Destinazioni culturali", "Poli culturali", "Classificazione"]),
+        column_config={
+            "Intensità culturale": st.column_config.NumberColumn(format="%.4f"),
+        },
+        use_container_width=True, height=450
+    )
