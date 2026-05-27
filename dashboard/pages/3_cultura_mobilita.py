@@ -96,8 +96,8 @@ with c2:
     layout_box.update(showlegend=False, height=200, margin=dict(t=40, b=30, l=40, r=40))
     fig_box.update_layout(**layout_box)
     fig_box.update_layout(yaxis_title="Intensità culturale", xaxis_title="")
-    fig_box.update_xaxes(tickfont_color="#1a3a4f", title_font_color="#1a3a4f")
-    fig_box.update_yaxes(tickfont_color="#1a3a4f", title_font_color="#1a3a4f")
+    fig_box.update_xaxes(tickfont_color="#1a3a4f", title_font_color="#1a3a4f", title_font_size=11)
+    fig_box.update_yaxes(tickfont_color="#1a3a4f", title_font_color="#1a3a4f", title_font_size=11)
     st.plotly_chart(fig_box, use_container_width=True)
 
     df_scatter2 = dff[dff["n_poli_totali"] > 0]
