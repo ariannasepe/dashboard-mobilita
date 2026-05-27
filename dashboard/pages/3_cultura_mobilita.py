@@ -90,10 +90,8 @@ with c2:
             y=vals, name=cls,
             marker_color=COLORI.get(cls, "#888"),
             boxpoints=False,
-            hovertemplate=(
-    "<b>%{x}</b><br>"
-    "Mediana: %{median:.3f}<extra></extra>"
-    ),
+            hovertemplate="<b>%{x}</b><br>Mediana: %{median:.3f}<extra></extra>",
+        ))
     layout_box = copy.deepcopy(PLOTLY_LAYOUT)
     layout_box.update(showlegend=False, height=200, margin=dict(t=40, b=30, l=40, r=40))
     fig_box.update_layout(**layout_box)
