@@ -87,11 +87,11 @@ with c2:
     for cls in ["emettitore", "attrattore", "equilibrato"]:
         vals = dff[dff["classificazione"] == cls]["intensita_culturale"].dropna()
         fig_box.add_trace(go.Box(
-    y=vals, name=cls,
-    marker_color=COLORI.get(cls, "#888"),
-    boxpoints=False,
-    hoverinfo="name+y",
-))
+            y=vals, name=cls,
+            marker_color=COLORI.get(cls, "#888"),
+            boxpoints=False,
+            hoverinfo="none",
+        ))
     layout_box = copy.deepcopy(PLOTLY_LAYOUT)
     layout_box.update(showlegend=False, height=200, margin=dict(t=40, b=30, l=40, r=40))
     fig_box.update_layout(**layout_box)
