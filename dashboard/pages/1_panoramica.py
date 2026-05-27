@@ -293,7 +293,7 @@ st.markdown('<div class="section-title">Top comuni per indicatore</div>', unsafe
 tab1, tab2, tab3, tab4 = st.tabs([
     "Saldo netto assoluto",
     "Indice attrattività",
-    "Maggiori emettitori",
+    "Poli culturali",
     "Intensità culturale",
 ])
 
@@ -336,13 +336,16 @@ with tab2:
     )
 
 with tab3:
-    top3 = (dff[dff["classificazione"] == "emettitore"]
-            .sort_values("saldo_netto").head(20))
+    top3 = (dff[dff["n_poli_totali"] > 0]
+            .sort_values("n_poli_totali", ascending=False).head(20))
     st.dataframe(
         fmt_table(top3,
-            ["COMUNE", "nome_regione", "POP21", "saldo_netto", "entrate", "uscite", "n_poli_totali"],
-            ["Comune", "Regione", "Popolazione", "Saldo netto", "Entrate", "Uscite", "Poli culturali"]),
-        column_config=col_cfg_saldo,
+            ["COMUNE", "nome_regione", "n_poli_totali", "POP21", "saldo_netto", "indice_attrattivita", "classificazione"],
+            ["Comune", "Regione", "Poli culturali", "Popolazione", "Saldo netto", "Ind. attrattività", "Classificazione"]),
+        column_config={
+            "Ind. attrattività": st.column_config.NumberColumn(format="%.4f"),
+            **col_cfg_saldo,
+        },
         use_container_width=True, height=450
     )
 
