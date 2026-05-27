@@ -93,7 +93,7 @@ with c2:
             hoverinfo="none",
         ))
     layout_box = copy.deepcopy(PLOTLY_LAYOUT)
-    layout_box.update(showlegend=False, height=200, margin=dict(t=40, b=30, l=40, r=30))
+    layout_box.update(showlegend=False, height=200, margin=dict(t=40, b=30, l=40, r=40))
     fig_box.update_layout(**layout_box)
     fig_box.update_layout(yaxis_title="Intensità culturale", xaxis_title="")
     st.plotly_chart(fig_box, use_container_width=True)
