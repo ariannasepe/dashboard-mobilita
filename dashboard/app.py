@@ -127,6 +127,8 @@ with st.expander("Nota metodologica"):
     - **Emettitore** → saldo netto negativo
     - **Equilibrato** → saldo netto pari a zero
 
+    All'interno della dashboard il colore identifica la classificazione del comune: blu per gli attrattori, verde per gli emettitori, grigio per gli equilibrati.
+
     ### I 4 KPI territoriali
     - **Saldo netto mobilità per territorio**: differenza tra flussi in entrata e in uscita per ciascun comune, misura del peso attrattivo o emissivo del territorio.
     - **Indice di attrattività**: rapporto tra entrate e popolazione residente, normalizza il saldo rispetto alla dimensione demografica del comune.
